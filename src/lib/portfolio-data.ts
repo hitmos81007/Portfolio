@@ -1,188 +1,291 @@
-// Placeholder content for Mohit S — edit freely.
 export const student = {
-  name: "Mohit S",
-  short: "Mohit",
-  titles: [
-    "Student Developer",
-    "AI Engineer",
-    "Full Stack Developer",
-    "ML Enthusiast",
-    "Problem Solver",
+  "name": "Mohit S",
+  "titles": [
+    "an AI/ML student",
+    "a software developer",
+    "a project team lead"
   ],
-  tagline: "Building ideas into reality, one line of code at a time.",
-  location: "India",
-  email: "mohit@example.com",
-  socials: {
-    github: "https://github.com/",
-    linkedin: "https://linkedin.com/in/",
-    twitter: "https://x.com/",
-    instagram: "https://instagram.com/",
-  },
+  "tagline": "Computer vision, applied AI, and full-stack software.",
+  "location": "Chennai, India",
+  "email": "mohitsivakumar8@gmail.com",
+  "resume": "/Mohit-S-Resume.pdf",
+  "socials": {
+    "github": "https://github.com/hitmos81007",
+    "linkedin": "https://www.linkedin.com/in/mohit-s-62a804394"
+  }
 };
 
 export const about = {
-  intro:
-    "I'm a student developer obsessed with the intersection of intelligent systems and beautiful interfaces. From training models to shipping polished products — I love turning abstract ideas into things people can feel.",
-  cards: [
-    { title: "Passions", body: "AI, generative systems, product design, cinematic web." },
-    { title: "Interests", body: "Computer vision, LLMs, edge inference, real-time graphics." },
-    { title: "Strengths", body: "Fast learner, product intuition, end-to-end shipping." },
-    { title: "Vision", body: "Human-centred AI that augments creativity, not replaces it." },
-    { title: "Career Goals", body: "Ship AI products used by millions. Contribute to research." },
-    { title: "Currently", body: "Exploring multimodal agents & real-time 3D on the web." },
-  ],
+  "intro": "I’m a computer science engineering student working on computer vision, applied AI, and full-stack software. I’m open to internships in AI/ML and software development.",
+  "cards": [
+    {
+      "title": "Computer vision",
+      "body": "I’ve worked on video search and human review workflows for CCTV Investigation Agent."
+    },
+    {
+      "title": "Full-stack development",
+      "body": "My projects use React and TypeScript interfaces with FastAPI or Supabase backends."
+    },
+    {
+      "title": "Hackathons",
+      "body": "My team reached the national VJ Hackathon final and placed fourth in the Internal Smart India Hackathon 2026 Hardware track."
+    }
+  ]
+};
+
+export const education = {
+  "degree": "B.E. Computer Science and Engineering",
+  "specialization": "Artificial Intelligence and Machine Learning",
+  "college": "Vel Tech High Tech Engineering College"
 };
 
 export const academics = [
-  { label: "CGPA", value: 9.2, suffix: "/10" },
-  { label: "Department Rank", value: 3, prefix: "#" },
-  { label: "Semester GPA (peak)", value: 9.6, suffix: "" },
-  { label: "Scholarships", value: 4, suffix: "" },
-  { label: "Dean's List", value: 5, suffix: "×" },
-  { label: "Attendance", value: 96, suffix: "%" },
-  { label: "Projects", value: 24, suffix: "+" },
-  { label: "Honors", value: 8, suffix: "" },
+  {
+    "label": "CGPA",
+    "value": "8.89 / 10"
+  },
+  {
+    "label": "Current semester",
+    "value": "3"
+  },
+  {
+    "label": "Expected graduation",
+    "value": "2029"
+  }
 ];
 
 export const skills = [
-  { name: "Python", group: "Language", level: 95 },
-  { name: "TypeScript", group: "Language", level: 92 },
-  { name: "Java", group: "Language", level: 82 },
-  { name: "C", group: "Language", level: 78 },
-  { name: "React", group: "Web", level: 94 },
-  { name: "Next.js", group: "Web", level: 90 },
-  { name: "Node.js", group: "Web", level: 88 },
-  { name: "FastAPI", group: "Web", level: 86 },
-  { name: "Supabase", group: "Cloud", level: 84 },
-  { name: "SQL", group: "Data", level: 88 },
-  { name: "Docker", group: "Cloud", level: 80 },
-  { name: "Git", group: "Tools", level: 92 },
-  { name: "TensorFlow", group: "AI", level: 85 },
-  { name: "PyTorch", group: "AI", level: 88 },
-  { name: "OpenCV", group: "AI", level: 82 },
-  { name: "Generative AI", group: "AI", level: 90 },
-  { name: "Computer Vision", group: "AI", level: 84 },
-  { name: "Data Science", group: "Data", level: 86 },
+  {
+    "name": "Python",
+    "group": "Languages"
+  },
+  {
+    "name": "TypeScript",
+    "group": "Languages"
+  },
+  {
+    "name": "JavaScript",
+    "group": "Languages"
+  },
+  {
+    "name": "SQL",
+    "group": "Languages"
+  },
+  {
+    "name": "OpenCV",
+    "group": "AI and computer vision"
+  },
+  {
+    "name": "YOLO",
+    "group": "AI and computer vision"
+  },
+  {
+    "name": "Ollama",
+    "group": "AI and computer vision"
+  },
+  {
+    "name": "React",
+    "group": "Web and data"
+  },
+  {
+    "name": "Next.js",
+    "group": "Web and data"
+  },
+  {
+    "name": "FastAPI",
+    "group": "Web and data"
+  },
+  {
+    "name": "Supabase",
+    "group": "Web and data"
+  },
+  {
+    "name": "PostgreSQL",
+    "group": "Web and data"
+  },
+  {
+    "name": "Git",
+    "group": "Tools"
+  }
 ];
 
 export const projects = [
   {
-    title: "Aurora — Multimodal Agent",
-    tag: "AI · Full Stack",
-    body: "Voice + vision agent that plans tasks across apps using tool-use LLMs.",
-    stack: ["Next.js", "FastAPI", "OpenAI", "PGVector"],
-    href: "#",
-    github: "#",
+    "title": "CCTV Investigation Agent",
+    "tag": "Computer Vision · Agentic AI",
+    "body": "Team lead · K! Hacks 4.0 project. A human-reviewed prototype that searches authorized CCTV footage and surfaces timestamped candidate clips from natural-language clues.",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "OpenCV"
+    ],
+    "github": "https://github.com/hitmos81007/CCTV-AI-Agent"
   },
   {
-    title: "Vision Grader",
-    tag: "Computer Vision",
-    body: "Real-time OMR + handwriting grader for classrooms with 98% accuracy.",
-    stack: ["PyTorch", "OpenCV", "React"],
-    href: "#",
-    github: "#",
+    "title": "SatyaCall",
+    "tag": "Full Stack · Verification",
+    "body": "A team prototype that checks caller credentials and request authorization during suspected impersonation scams, with an evidence vault.",
+    "stack": [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "Solidity"
+    ],
+    "github": "https://github.com/hitmos81007/Hack-Sprint"
   },
   {
-    title: "Nimbus DB Studio",
-    tag: "Developer Tools",
-    body: "Beautiful, keyboard-first Postgres studio with AI query copilot.",
-    stack: ["TS", "Tauri", "Supabase"],
-    href: "#",
-    github: "#",
+    "title": "LifeLink AI",
+    "tag": "Software · Healthcare",
+    "body": "A college prototype for exploring emergency healthcare resource coordination with fictional hospitals and synthetic inventory.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL"
+    ],
+    "github": "https://github.com/hitmos81007/LifeLink-AI"
   },
   {
-    title: "Cinema-Web Portfolio Kit",
-    tag: "Web · 3D",
-    body: "Open-source Three.js portfolio starter used by 2k+ students.",
-    stack: ["R3F", "GSAP", "Lenis"],
-    href: "#",
-    github: "#",
-  },
-  {
-    title: "EchoNotes",
-    tag: "AI · Product",
-    body: "Turns lecture recordings into structured notes, mindmaps and quizzes.",
-    stack: ["Whisper", "LLM", "Next.js"],
-    href: "#",
-    github: "#",
-  },
-  {
-    title: "GreenGrid",
-    tag: "ML · Sustainability",
-    body: "Forecasts campus energy use; won National Innovation Hackathon.",
-    stack: ["Python", "XGBoost", "FastAPI"],
-    href: "#",
-    github: "#",
-  },
+    "title": "Le Pabey’s Storefront",
+    "tag": "Full Stack · E-commerce",
+    "body": "A storefront with a shopping cart and Stripe checkout for credit and debit cards.",
+    "stack": [
+      "React",
+      "Vite",
+      "Express",
+      "Stripe"
+    ],
+    "github": "https://github.com/hitmos81007/Freelance-Project"
+  }
 ];
 
 export const certificates = [
-  { name: "Deep Learning Specialization", issuer: "Coursera / DeepLearning.AI", year: "2025", cat: "AI" },
-  { name: "AWS Cloud Practitioner", issuer: "AWS", year: "2025", cat: "Cloud" },
-  { name: "Google Data Analytics", issuer: "Google", year: "2024", cat: "Data" },
-  { name: "Microsoft Azure AI Fundamentals", issuer: "Microsoft", year: "2024", cat: "AI" },
-  { name: "IBM Full Stack Developer", issuer: "IBM", year: "2024", cat: "Web" },
-  { name: "Oracle Java SE 17", issuer: "Oracle", year: "2023", cat: "Programming" },
-  { name: "Cisco Networking Essentials", issuer: "Cisco", year: "2023", cat: "Cybersecurity" },
-  { name: "NPTEL Machine Learning", issuer: "NPTEL", year: "2024", cat: "AI" },
-  { name: "Hackathon: National Winner", issuer: "SIH", year: "2025", cat: "Hackathons" },
-  { name: "Leadership Excellence", issuer: "University", year: "2024", cat: "Leadership" },
-  { name: "Ethical Hacking Workshop", issuer: "TechFest", year: "2024", cat: "Cybersecurity" },
-  { name: "TensorFlow Developer", issuer: "Google", year: "2025", cat: "AI" },
+  {
+    "name": "AWS Solutions Architecture Job Simulation",
+    "issuer": "Forage",
+    "date": "January 2026",
+    "cat": "Job simulations",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7420989356498382848/"
+  },
+  {
+    "name": "Deloitte Australia Technology Job Simulation",
+    "issuer": "Forage",
+    "date": "January 2026",
+    "cat": "Job simulations",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7420814088785747968/"
+  },
+  {
+    "name": "Winter Internship Technical Training Program",
+    "issuer": "India Space Lab",
+    "date": "February–March 2026",
+    "cat": "Training",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7500519531140771840/"
+  },
+  {
+    "name": "Python Using AI Workshop",
+    "issuer": "AI for Techies",
+    "date": "2026",
+    "cat": "AI",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7500520258559119360/"
+  },
+  {
+    "name": "Walmart USA Advanced Software Engineering Job Simulation",
+    "issuer": "Forage",
+    "date": "2026",
+    "cat": "Job simulations",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7421097613971636224/"
+  },
+  {
+    "name": "IoT, competitive programming, and soft skills coursework",
+    "issuer": "NPTEL",
+    "date": "2026",
+    "cat": "Courses",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7528438220880220161/"
+  },
+  {
+    "name": "MATLAB and Simulink self-paced training",
+    "issuer": "MathWorks Training Services",
+    "date": "2026",
+    "cat": "Courses",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7528435129116176384/"
+  },
+  {
+    "name": "Java, C++, and GenAI 101 bootcamps",
+    "issuer": null,
+    "date": "2025",
+    "cat": "Courses",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7528430778616209410/"
+  }
 ];
-export const certCategories = ["All","AI","Cloud","Web","Data","Programming","Cybersecurity","Hackathons","Leadership"];
 
 export const awards = [
-  { name: "Smart India Hackathon — Winner", place: "Gold", year: 2025 },
-  { name: "National AI Innovation Award", place: "Gold", year: 2025 },
-  { name: "University Coding Championship", place: "Gold", year: 2024 },
-  { name: "Research Recognition — Best Paper", place: "Silver", year: 2024 },
-  { name: "Leadership Excellence Award", place: "Gold", year: 2024 },
-  { name: "Volunteer of the Year", place: "Silver", year: 2023 },
-  { name: "Academic Excellence Medal", place: "Gold", year: 2023 },
-  { name: "Best Project — Capstone", place: "Gold", year: 2025 },
-  { name: "Hack the Future — Special Mention", place: "Special", year: 2024 },
+  {
+    "name": "VJ Hackathon 2026",
+    "place": "National-level finalist",
+    "year": 2026,
+    "detail": "VNR VJIET · Finalist with Segfault Squad",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7518214281184571392/"
+  },
+  {
+    "name": "Internal Smart India Hackathon 2026",
+    "place": "4th place · Hardware track",
+    "year": 2026,
+    "detail": "Vel Tech High Tech",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7518209293901303808/"
+  },
+  {
+    "name": "Internal Smart India Hackathon 2025",
+    "place": "Best Idea Presentation Award",
+    "year": 2025,
+    "detail": "Vel Tech High Tech · AI-Based Smart Traffic Management System",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7500522467296280576/"
+  }
 ];
 
 export const timeline = [
-  { year: "2020", title: "School — Class XII", body: "Graduated with distinction, math & CS focus." },
-  { year: "2021", title: "Started B.Tech CSE", body: "First lines of production code shipped." },
-  { year: "2022", title: "First Hackathon Win", body: "Built an assistive vision app in 36 hours." },
-  { year: "2023", title: "ML Research Assistant", body: "Contributed to a peer-reviewed vision paper." },
-  { year: "2024", title: "Full Stack Intern", body: "Shipped features to 100k+ users at a fast-growing startup." },
-  { year: "2025", title: "National Hackathon — Gold", body: "Led a 4-person team to first place nationally." },
-  { year: "Next", title: "Building the future", body: "Founding-engineer roles, applied AI, research collabs." },
+  {
+    "year": "2025",
+    "title": "Started B.E. CSE (AI & ML)",
+    "body": "Vel Tech High Tech Engineering College. Expected to graduate in 2029.",
+    "link": null
+  },
+  {
+    "year": "Apr 1–Jun 1, 2026",
+    "title": "Machine Learning Internship · Edufyi Tech Solutions",
+    "body": "Built assigned projects involving data analysis and machine learning model development.",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7477005218954772480/"
+  },
+  {
+    "year": "2026",
+    "title": "Team Lead · CCTV Investigation Agent",
+    "body": "Led the K! Hacks project team in designing a human-reviewed workflow for searching CCTV recordings.",
+    "link": "https://github.com/hitmos81007/CCTV-AI-Agent"
+  }
 ];
 
-export const testimonials = [
-  { name: "Dr. A. Ramesh", role: "Professor, CSE", quote: "One of the sharpest students I've mentored. Rare mix of taste, rigour and shipping ability." },
-  { name: "Priya Nair", role: "Senior Engineer, Startup", quote: "Mohit shipped features senior engineers would be proud of. Effortlessly reliable." },
-  { name: "Rahul Verma", role: "Hackathon Judge", quote: "The polish on his demo was unreal. Product mind, engineer's hands." },
-  { name: "Sneha Kapoor", role: "Peer & Collaborator", quote: "He makes hard things look calm. Best teammate I've had in college." },
+export const events = [
+  {
+    "name": "Bharatiya Antariksh Hackathon 2026",
+    "detail": "Idea submission · ISRO and Hack2Skill",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7500521273299648512/"
+  },
+  {
+    "name": "SAMHITA’26 Hackathon",
+    "detail": "Participant · Madras Institute of Technology, Anna University",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7500527919253958657/"
+  },
+  {
+    "name": "Inter-college hackathons",
+    "detail": "ITERXY’26, Binary Brains Build, Code, Innovate, and Signal Shift 2K26",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7528459098019913728/"
+  },
+  {
+    "name": "College expos and business plan events",
+    "detail": "Zephoria’25, Crevante 2K26, and Zephoria’26",
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7528456588710563840/"
+  }
 ];
 
-export const stats = [
-  { label: "Projects Completed", value: 24 },
-  { label: "Hackathons", value: 12 },
-  { label: "Certificates", value: 18 },
-  { label: "Awards", value: 9 },
-  { label: "GitHub Contributions", value: 1840 },
-  { label: "Coding Hours", value: 4200 },
-  { label: "LeetCode Problems", value: 620 },
-  { label: "CodeChef Rating", value: 1912 },
-  { label: "HackerRank ★", value: 5 },
-  { label: "Open Source PRs", value: 46 },
-  { label: "Talks Given", value: 7 },
-  { label: "Visitors", value: 12800 },
-];
-
-export const gallery = [
-  "Hackathon night at 3am — team huddle",
-  "Keynote — presenting Aurora at TechFest",
-  "Award ceremony — National Hackathon",
-  "Workshop I ran on Generative AI",
-  "College cultural fest — organizing team",
-  "Research lab — vision experiments",
-  "Team photo — capstone project",
-  "Community meetup talk",
-];
+export const certCategories = ["All", ...new Set(certificates.map(({ cat }) => cat))];

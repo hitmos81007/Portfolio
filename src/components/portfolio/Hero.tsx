@@ -20,18 +20,18 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-6 pt-28 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
           className="mb-6 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[11px] uppercase tracking-[0.28em] text-gold"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)] animate-twinkle" />
-          Portfolio · 2026
+          Open to internships
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 40, filter: "blur(20px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ y: 24 }}
+          animate={{ y: 0 }}
           transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1] }}
           className="text-gradient-gold text-[clamp(3rem,10vw,8.5rem)] leading-[0.95]"
         >
@@ -39,17 +39,17 @@ export function Hero() {
         </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={false}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
           className="mt-6 flex min-h-[2.5rem] items-center justify-center text-lg md:text-2xl text-foreground/85"
         >
-          <span className="font-display italic text-muted-foreground mr-3">I am a</span>
+          <span className="font-display italic text-muted-foreground mr-3">I’m</span>
           <TypeCycle words={student.titles} className="text-gold font-medium" />
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.9 }}
           className="mt-8 max-w-xl text-sm md:text-base text-muted-foreground"
@@ -58,17 +58,17 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.1 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-3"
         >
-          <a href="#about" className="group inline-flex items-center gap-2 rounded-full bg-gradient-gold px-6 py-3 text-sm font-medium text-[color:var(--ink)] shadow-gold-glow transition hover:scale-[1.04]">
-            Explore journey
+          <a href="#projects" className="group inline-flex items-center gap-2 rounded-full bg-gradient-gold px-6 py-3 text-sm font-medium text-[color:var(--ink)] shadow-gold-glow transition hover:scale-[1.04]">
+            View projects
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
           </a>
-          <a href="#" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm text-foreground transition hover:bg-white/[0.06]">
-            <Download className="h-4 w-4" /> Download resume
+          <a href={student.resume} download className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm text-foreground transition hover:bg-white/[0.06]">
+            <Download className="h-4 w-4" /> Download résumé
           </a>
           <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/30 px-6 py-3 text-sm text-foreground transition hover:bg-white/[0.04]">
             <Mail className="h-4 w-4" /> Contact me

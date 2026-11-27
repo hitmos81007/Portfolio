@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 import { Section } from "./Section";
-import { about, academics, timeline, testimonials, stats, gallery, awards, certificates, certCategories, projects, student } from "@/lib/portfolio-data";
-import { CountUp } from "@/CountUp";
+import { about, academics, awards, certificates, certCategories, education, events, projects, skills, student, timeline } from "@/lib/portfolio-data";
 import { ClientOnly } from "@/ClientOnly";
 import { SkillsGalaxy } from "./SkillsGalaxy";
-import { useState, type ReactNode } from "react";
-import { Award, Trophy, ExternalLink, Sparkles, Star, Medal, MapPin, Send, Mail } from "lucide-react";
+import { useState, type FormEvent, type ReactNode } from "react";
+import { Download, ExternalLink, Mail, MapPin, Medal, Send, Sparkles, Trophy } from "lucide-react";
 
 // Brand icons — inline SVG (lucide-react v1 dropped brand icons)
 const Github = ({ className = "h-4 w-4" }: { className?: string }) => (
@@ -14,20 +13,13 @@ const Github = ({ className = "h-4 w-4" }: { className?: string }) => (
 const Linkedin = ({ className = "h-4 w-4" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18.3H5.7V9.7h2.6v8.6zM7 8.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11.3 9.8h-2.6v-4.2c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2v4.3h-2.6V9.7h2.5v1.2c.4-.7 1.3-1.4 2.6-1.4 2.8 0 3.3 1.8 3.3 4.2v4.6z"/></svg>
 );
-const Twitter = ({ className = "h-4 w-4" }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-);
-const Instagram = ({ className = "h-4 w-4" }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-);
-
 /* ---------- About ---------- */
 export function About() {
   return (
     <Section
       id="about"
-      eyebrow="Chapter I · About"
-      title={<>The person behind <em className="not-italic text-foreground/80">the code.</em></>}
+      eyebrow="About"
+      title={<>The person behind <em className="not-italic text-foreground/80">the code</em></>}
       subtitle={about.intro}
     >
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -60,11 +52,11 @@ export function Academics() {
   return (
     <Section
       id="academics"
-      eyebrow="Chapter II · Academic Excellence"
-      title={<>Numbers that <span className="italic">quietly compound.</span></>}
-      subtitle="A record earned across semesters — grades, rank, honors and the daily habit of showing up."
+      eyebrow="Education"
+      title={<>{education.degree} <span className="italic">({education.specialization})</span></>}
+      subtitle={education.college}
     >
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-3">
         {academics.map((a, i) => (
           <motion.div
             key={a.label}
@@ -76,7 +68,7 @@ export function Academics() {
           >
             <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[color:var(--gold)]/10 blur-2xl transition group-hover:bg-[color:var(--gold)]/25" />
             <div className="text-4xl md:text-5xl font-display text-gradient-gold">
-              <CountUp to={a.value} decimals={Number.isInteger(a.value) ? 0 : 1} prefix={a.prefix || ""} suffix={a.suffix || ""} />
+              {a.value}
             </div>
             <div className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">{a.label}</div>
           </motion.div>
@@ -91,15 +83,25 @@ export function Skills() {
   return (
     <Section
       id="skills"
-      eyebrow="Chapter III · Skills Galaxy"
-      title={<>An orbit of tools I <span className="italic">actually ship with.</span></>}
-      subtitle="Each planet is a skill I use in real projects — sized by depth of experience."
+      eyebrow="Skills Galaxy"
+      title={<>Tools I use <span className="italic">in my projects</span></>}
+      subtitle="Explore the galaxy or browse the skills by category below."
     >
       <div className="glass-strong overflow-hidden rounded-3xl">
         <ClientOnly fallback={<div className="h-[600px] w-full bg-aurora" />}>
           <SkillsGalaxy />
         </ClientOnly>
       </div>
+      <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+        {[...new Set(skills.map(({ group }) => group))].map((group) => (
+          <div key={group} className="glass rounded-xl p-4">
+            <dt className="text-sm font-medium text-gold">{group}</dt>
+            <dd className="mt-1 text-sm text-muted-foreground">
+              {skills.filter((skill) => skill.group === group).map((skill) => skill.name).join(" · ")}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </Section>
   );
 }
@@ -109,9 +111,8 @@ export function Projects() {
   return (
     <Section
       id="projects"
-      eyebrow="Chapter IV · Project Universe"
-      title={<>Things I've <span className="italic">built and shipped.</span></>}
-      subtitle="A selection of projects — real users, real problems, real polish."
+      eyebrow="Project Universe"
+      title={<>Selected <span className="italic">projects</span></>}
     >
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((p, i) => (
@@ -127,7 +128,6 @@ export function Projects() {
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(600px_circle_at_var(--x,50%)_var(--y,0%),oklch(0.82_0.14_85/0.12),transparent_60%)] opacity-0 transition group-hover:opacity-100" />
             <div className="mb-3 flex items-center justify-between">
               <span className="text-[11px] uppercase tracking-[0.24em] text-gold">{p.tag}</span>
-              <span className="text-xs text-muted-foreground">0{i + 1}</span>
             </div>
             <h3 className="text-3xl text-gradient-gold">{p.title}</h3>
             <p className="mt-3 text-sm text-muted-foreground">{p.body}</p>
@@ -137,11 +137,8 @@ export function Projects() {
               ))}
             </div>
             <div className="mt-6 flex gap-3">
-              <a href={p.href} className="inline-flex items-center gap-1.5 text-xs text-gold hover:underline">
-                Live <ExternalLink className="h-3 w-3" />
-              </a>
-              <a href={p.github} className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-gold">
-                GitHub <Github className="h-3 w-3" />
+              <a href={p.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm text-gold hover:underline">
+                View repository <Github className="h-3 w-3" />
               </a>
             </div>
           </motion.article>
@@ -158,14 +155,16 @@ export function Certificates() {
   return (
     <Section
       id="certificates"
-      eyebrow="Chapter V · Certificates Vault"
-      title={<>A museum of <span className="italic">verified craft.</span></>}
-      subtitle="Coursework, hackathons, cloud, AI — filtered by the room you'd like to enter."
+      eyebrow="Certificates Vault"
+      title={<>Training and <span className="italic">credentials</span></>}
+      subtitle="Coursework, workshops, and job simulations with links to my LinkedIn posts."
     >
       <div className="mb-8 flex flex-wrap gap-2">
         {certCategories.map((c) => (
           <button
             key={c}
+            type="button"
+            aria-pressed={cat === c}
             onClick={() => setCat(c)}
             className={`rounded-full px-4 py-1.5 text-xs transition ${
               cat === c
@@ -193,10 +192,10 @@ export function Certificates() {
             <div className="absolute -inset-px rounded-2xl border border-[color:var(--gold)]/20 opacity-0 transition group-hover:opacity-100" />
             <Medal className="h-5 w-5 text-gold" />
             <h3 className="mt-4 text-lg font-medium text-foreground leading-snug">{c.name}</h3>
-            <p className="mt-1 text-xs text-muted-foreground">{c.issuer} · {c.year}</p>
+            <p className="mt-1 text-xs text-muted-foreground">{[c.issuer, c.date].filter(Boolean).join(" · ")}</p>
             <div className="mt-4 flex items-center justify-between">
               <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] uppercase tracking-wider text-gold">{c.cat}</span>
-              <a href="#" className="text-xs text-muted-foreground hover:text-gold">Verify →</a>
+              <a href={c.link} target="_blank" rel="noreferrer" className="text-sm text-muted-foreground hover:text-gold">LinkedIn post</a>
             </div>
           </motion.div>
         ))}
@@ -210,9 +209,8 @@ export function Awards() {
   return (
     <Section
       id="awards"
-      eyebrow="Chapter VI · Recognition Hall"
-      title={<>Trophies, medals, and <span className="italic">nights that mattered.</span></>}
-      subtitle="Selected recognitions from hackathons, research, leadership and academics."
+      eyebrow="Recognition Hall"
+      title={<>Hackathon <span className="italic">results</span></>}
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {awards.map((a, i) => (
@@ -236,6 +234,8 @@ export function Awards() {
                 <span className="text-[10px] text-muted-foreground">· {a.year}</span>
               </div>
               <h3 className="mt-1 text-lg text-foreground">{a.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{a.detail}</p>
+              <a href={a.link} target="_blank" rel="noreferrer" className="mt-3 inline-block text-sm text-gold hover:underline">LinkedIn post</a>
             </div>
           </motion.div>
         ))}
@@ -249,8 +249,8 @@ export function Timeline() {
   return (
     <Section
       id="timeline"
-      eyebrow="Chapter VII · Journey"
-      title={<>The path so far — <span className="italic">and where it's going.</span></>}
+      eyebrow="Journey"
+      title={<>Education and <span className="italic">experience</span></>}
     >
       <div className="relative">
         <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[color:var(--gold)]/40 to-transparent" />
@@ -259,7 +259,7 @@ export function Timeline() {
             const left = i % 2 === 0;
             return (
               <motion.div
-                key={t.year}
+                key={t.title}
                 initial={{ opacity: 0, x: left ? -40 : 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
@@ -271,6 +271,11 @@ export function Timeline() {
                   <div className="text-[11px] uppercase tracking-[0.24em] text-gold">{t.year}</div>
                   <h3 className="mt-1 text-2xl text-gradient-gold">{t.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{t.body}</p>
+                  {t.link && (
+                    <a href={t.link} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm text-gold hover:underline">
+                      {t.link.includes("linkedin.com") ? "LinkedIn post" : "View repository"} <ExternalLink className="h-3 w-3" />
+                    </a>
+                  )}
                 </div>
                 <div />
               </motion.div>
@@ -282,116 +287,24 @@ export function Timeline() {
   );
 }
 
-/* ---------- Testimonials ---------- */
-export function Testimonials() {
+/* ---------- Events ---------- */
+export function Events() {
   return (
     <Section
-      id="testimonials"
-      eyebrow="Chapter VIII · Words"
-      title={<>What mentors and peers <span className="italic">say.</span></>}
+      id="events"
+      eyebrow="Beyond the classroom"
+      title={<>Events and <span className="italic">participation</span></>}
     >
-      <div className="grid gap-6 md:grid-cols-2">
-        {testimonials.map((t, i) => (
-          <motion.figure
-            key={t.name}
-            initial={{ opacity: 0, y: 40, rotateY: -5 }}
-            whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: i * 0.08 }}
-            whileHover={{ rotateY: 3, rotateX: -2, y: -6 }}
-            style={{ transformStyle: "preserve-3d" }}
-            className="glass-strong rounded-3xl p-8"
-          >
-            <div className="mb-4 flex text-gold">
-              {[0,1,2,3,4].map((s) => <Star key={s} className="h-4 w-4 fill-current" />)}
-            </div>
-            <blockquote className="font-display text-2xl leading-snug text-foreground/90">
-              "{t.quote}"
-            </blockquote>
-            <figcaption className="mt-6 flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-gold text-[color:var(--ink)] font-display">
-                {t.name.charAt(0)}
-              </div>
-              <div>
-                <div className="text-sm text-foreground">{t.name}</div>
-                <div className="text-xs text-muted-foreground">{t.role}</div>
-              </div>
-            </figcaption>
-          </motion.figure>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-/* ---------- Stats ---------- */
-export function Stats() {
-  return (
-    <Section
-      id="stats"
-      eyebrow="Chapter IX · Dashboard"
-      title={<>By the <span className="italic">numbers.</span></>}
-    >
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-        {stats.map((s, i) => (
-          <motion.div
-            key={s.label}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.04 }}
-            className="glass relative overflow-hidden rounded-xl p-5"
-          >
-            <div className="text-3xl font-display text-gradient-gold">
-              <CountUp to={s.value} />
-            </div>
-            <div className="mt-1 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">{s.label}</div>
-            <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-white/5">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "88%" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.4, delay: 0.2 + i * 0.03 }}
-                className="h-full bg-gradient-gold"
-              />
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-/* ---------- Gallery ---------- */
-export function Gallery() {
-  return (
-    <Section
-      id="gallery"
-      eyebrow="Chapter X · Gallery"
-      title={<>Moments <span className="italic">from the road.</span></>}
-      subtitle="Hackathons at 3am, keynotes, workshops, teams — glimpses of the last few years."
-    >
-      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {gallery.map((caption, i) => {
-          const spans = [
-            "md:col-span-2 md:row-span-2",
-            "",
-            "md:row-span-2",
-            "",
-            "",
-            "md:col-span-2",
-            "",
-            "",
-          ];
-          return (
+      <div className="grid gap-4 sm:grid-cols-2">
+        {events.map((event, i) => (
             <motion.div
-              key={caption}
+              key={event.name}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.05 }}
               whileHover={{ scale: 1.02 }}
-              className={`glass group relative min-h-[180px] overflow-hidden rounded-2xl p-5 ${spans[i] || ""}`}
+              className="glass group relative flex min-h-[155px] flex-col justify-end overflow-hidden rounded-2xl p-5"
               style={{
                 backgroundImage: `
                   radial-gradient(circle at 30% 30%, oklch(0.82 0.14 85 / 0.18), transparent 60%),
@@ -399,60 +312,69 @@ export function Gallery() {
                 `,
               }}
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x,50%)_var(--y,50%),oklch(0.9_0.12_88/0.15),transparent_60%)] opacity-0 transition group-hover:opacity-100" />
-              <div className="flex h-full flex-col justify-end">
-                <div className="text-[10px] uppercase tracking-[0.24em] text-gold">Moment · 0{i + 1}</div>
-                <p className="mt-1 text-sm text-foreground/90">{caption}</p>
-              </div>
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_var(--x,50%)_var(--y,50%),oklch(0.9_0.12_88/0.15),transparent_60%)] opacity-0 transition group-hover:opacity-100" />
+              <h3 className="relative text-xl text-gradient-gold">{event.name}</h3>
+              <p className="relative mt-2 text-sm text-foreground/90">{event.detail}</p>
+              <a href={event.link} target="_blank" rel="noreferrer" className="relative mt-3 text-sm text-gold hover:underline">LinkedIn post</a>
             </motion.div>
-          );
-        })}
+        ))}
       </div>
     </Section>
   );
 }
 
 /* ---------- Contact ---------- */
+function openEmailDraft(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+  const form = new FormData(event.currentTarget);
+  const name = String(form.get("name")).trim();
+  const email = String(form.get("email")).trim();
+  const message = String(form.get("message")).trim();
+  const subject = encodeURIComponent("Portfolio inquiry from " + name);
+  const body = encodeURIComponent(message + "\n\nFrom " + name + " (" + email + ")");
+  window.location.href = "mailto:" + student.email + "?subject=" + subject + "&body=" + body;
+}
+
 export function Contact() {
-  const [sent, setSent] = useState(false);
   return (
     <Section
       id="contact"
-      eyebrow="Chapter XI · Contact"
-      title={<>Let's build <span className="italic">something worth remembering.</span></>}
-      subtitle="Open to internships, research collabs, hackathon teams and interesting ideas."
+      eyebrow="Contact"
+      title={<>Let’s <span className="italic">get in touch</span></>}
+      subtitle="I’m open to AI/ML and software development internships."
     >
       <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
         <form
-          onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+          onSubmit={openEmailDraft}
           className="glass-strong space-y-4 rounded-3xl p-8"
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block">
               <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Name</span>
-              <input required className="mt-2 w-full rounded-lg border border-[color:var(--gold)]/20 bg-white/[0.03] px-4 py-3 text-sm text-foreground outline-none focus:border-[color:var(--gold)]/60" placeholder="Ada Lovelace" />
+              <input required name="name" autoComplete="name" className="mt-2 w-full rounded-lg border border-[color:var(--gold)]/20 bg-white/[0.03] px-4 py-3 text-sm text-foreground outline-none focus:border-[color:var(--gold)]/60" />
             </label>
             <label className="block">
               <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Email</span>
-              <input required type="email" className="mt-2 w-full rounded-lg border border-[color:var(--gold)]/20 bg-white/[0.03] px-4 py-3 text-sm text-foreground outline-none focus:border-[color:var(--gold)]/60" placeholder="you@domain.com" />
+              <input required type="email" name="email" autoComplete="email" className="mt-2 w-full rounded-lg border border-[color:var(--gold)]/20 bg-white/[0.03] px-4 py-3 text-sm text-foreground outline-none focus:border-[color:var(--gold)]/60" />
             </label>
           </div>
           <label className="block">
             <span className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Message</span>
-            <textarea required rows={5} className="mt-2 w-full resize-none rounded-lg border border-[color:var(--gold)]/20 bg-white/[0.03] px-4 py-3 text-sm text-foreground outline-none focus:border-[color:var(--gold)]/60" placeholder="Tell me about your project or idea…" />
+            <textarea required name="message" rows={5} className="mt-2 w-full resize-none rounded-lg border border-[color:var(--gold)]/20 bg-white/[0.03] px-4 py-3 text-sm text-foreground outline-none focus:border-[color:var(--gold)]/60" />
           </label>
           <button
             type="submit"
             className="group inline-flex items-center gap-2 rounded-full bg-gradient-gold px-6 py-3 text-sm font-medium text-[color:var(--ink)] shadow-gold-glow transition hover:scale-[1.03]"
           >
-            {sent ? "Sent — I'll reply soon" : "Send message"}
+            Open email draft
             <Send className="h-4 w-4 transition group-hover:translate-x-1" />
           </button>
+          <p className="text-sm text-muted-foreground">Opens a draft in your email app.</p>
         </form>
 
         <div className="glass rounded-3xl p-8">
           <div className="text-[11px] uppercase tracking-[0.22em] text-gold">Direct</div>
-          <a href={`mailto:${student.email}`} className="mt-2 block font-display text-3xl text-gradient-gold hover:opacity-90">
+          <a href={`mailto:${student.email}`} className="mt-2 block break-words font-display text-3xl text-gradient-gold hover:opacity-90">
             {student.email}
           </a>
           <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
@@ -462,10 +384,8 @@ export function Contact() {
           <div className="mt-8 grid grid-cols-2 gap-3">
             <SocialLink href={student.socials.github} icon={<Github className="h-4 w-4" />} label="GitHub" />
             <SocialLink href={student.socials.linkedin} icon={<Linkedin className="h-4 w-4" />} label="LinkedIn" />
-            <SocialLink href={student.socials.twitter} icon={<Twitter className="h-4 w-4" />} label="Twitter / X" />
-            <SocialLink href={student.socials.instagram} icon={<Instagram className="h-4 w-4" />} label="Instagram" />
             <SocialLink href={`mailto:${student.email}`} icon={<Mail className="h-4 w-4" />} label="Email" />
-            <SocialLink href="#" icon={<Award className="h-4 w-4" />} label="Resume" />
+            <SocialLink href={student.resume} icon={<Download className="h-4 w-4" />} label="Résumé" download />
           </div>
         </div>
       </div>
@@ -473,11 +393,12 @@ export function Contact() {
   );
 }
 
-function SocialLink({ href, icon, label }: { href: string; icon: ReactNode; label: string }) {
+function SocialLink({ href, icon, label, download }: { href: string; icon: ReactNode; label: string; download?: boolean }) {
   return (
     <a
       href={href}
-      target="_blank"
+      download={download}
+      target={href.startsWith("https:") ? "_blank" : undefined}
       rel="noreferrer"
       className="group flex items-center gap-3 rounded-xl border border-[color:var(--gold)]/15 bg-white/[0.02] px-4 py-3 text-sm text-foreground transition hover:border-[color:var(--gold)]/50 hover:bg-white/[0.05]"
     >
@@ -499,10 +420,10 @@ export function Footer() {
           M
         </div>
         <p className="mx-auto max-w-xl font-display text-2xl md:text-3xl text-gradient-gold">
-          "Building ideas into reality, one line of code at a time."
+          {student.tagline}
         </p>
         <p className="mt-6 text-xs uppercase tracking-[0.24em] text-muted-foreground">
-          © {new Date().getFullYear()} {student.name} · Crafted with care
+          © {new Date().getFullYear()} {student.name}
         </p>
       </div>
     </footer>

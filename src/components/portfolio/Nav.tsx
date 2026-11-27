@@ -8,6 +8,7 @@ const items = [
   ["Projects", "projects"],
   ["Certificates", "certificates"],
   ["Awards", "awards"],
+  ["Experience", "timeline"],
   ["Contact", "contact"],
 ] as const;
 

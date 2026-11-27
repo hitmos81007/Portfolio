@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export function TypeCycle({ words, className }: { words: string[]; className?: string }) {
   const [i, setI] = useState(0);
-  const [text, setText] = useState("");
+  const [text, setText] = useState(words[0] ?? "");
   const [phase, setPhase] = useState<"typing" | "hold" | "deleting">("typing");
 
   useEffect(() => {

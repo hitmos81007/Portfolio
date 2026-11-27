@@ -4,16 +4,15 @@ import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { skills } from "@/lib/portfolio-data";
 
-function Planet({ position, name, level, color, onHover }: {
+function Planet({ position, name, group, color, onHover }: {
   position: [number, number, number];
   name: string;
-  level: number;
+  group: string;
   color: string;
   onHover: (n: string | null) => void;
 }) {
   const ref = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
-  const size = 0.18 + (level / 100) * 0.35;
   useFrame((_, delta) => {
     if (!ref.current) return;
     ref.current.rotation.y += delta * 0.4;
@@ -27,14 +26,14 @@ function Planet({ position, name, level, color, onHover }: {
         onPointerOver={(e) => { e.stopPropagation(); setHovered(true); onHover(name); document.body.style.cursor = "pointer"; }}
         onPointerOut={() => { setHovered(false); onHover(null); document.body.style.cursor = "default"; }}
       >
-        <sphereGeometry args={[size, 32, 32]} />
+        <sphereGeometry args={[0.45, 32, 32]} />
         <meshStandardMaterial color={color} emissive={color} emissiveIntensity={hovered ? 1.1 : 0.5} metalness={0.6} roughness={0.3} />
       </mesh>
       {hovered && (
         <Html center distanceFactor={8} style={{ pointerEvents: "none" }}>
           <div className="glass-strong whitespace-nowrap rounded-lg px-3 py-1.5 text-[11px] font-medium text-foreground">
             <span className="text-gradient-gold">{name}</span>
-            <span className="ml-2 text-muted-foreground">{level}%</span>
+            <span className="ml-2 text-muted-foreground">{group}</span>
           </div>
         </Html>
       )}
@@ -69,7 +68,7 @@ function Galaxy({ onHover }: { onHover: (n: string | null) => void }) {
           key={s.name}
           position={positions[i]}
           name={s.name}
-          level={s.level}
+          group={s.group}
           color={palette[i % palette.length]}
           onHover={onHover}
         />
