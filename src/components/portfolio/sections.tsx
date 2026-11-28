@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Section } from "./Section";
 import { about, academics, awards, certificates, certCategories, education, events, projects, skills, student, timeline } from "@/lib/portfolio-data";
 import { ClientOnly } from "@/ClientOnly";
+import { CertificateGallery } from "./CertificateGallery";
 import { SkillsGalaxy } from "./SkillsGalaxy";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { Download, ExternalLink, Mail, MapPin, Medal, Send, Sparkles, Trophy } from "lucide-react";
@@ -157,8 +158,9 @@ export function Certificates() {
       id="certificates"
       eyebrow="Certificates Vault"
       title={<>Training and <span className="italic">credentials</span></>}
-      subtitle="Coursework, workshops, and job simulations with links to my LinkedIn posts."
+      subtitle="Certificates from internships, courses, hackathons, and school competitions."
     >
+      <CertificateGallery />
       <div className="mb-8 flex flex-wrap gap-2">
         {certCategories.map((c) => (
           <button
@@ -210,7 +212,7 @@ export function Awards() {
     <Section
       id="awards"
       eyebrow="Recognition Hall"
-      title={<>Hackathon <span className="italic">results</span></>}
+      title={<>Awards and <span className="italic">recognition</span></>}
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {awards.map((a, i) => (
@@ -220,22 +222,29 @@ export function Awards() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: i * 0.05 }}
-            className="glass-strong group relative flex items-start gap-4 overflow-hidden rounded-2xl p-6"
+            className={`glass-strong overflow-hidden rounded-2xl ${a.image ? "" : "md:col-span-2 lg:col-span-3"}`}
           >
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-[color:var(--gold)]/30 blur-xl" />
-              <div className="relative grid h-14 w-14 place-items-center rounded-full bg-gradient-gold text-[color:var(--ink)]">
-                <Trophy className="h-6 w-6" />
+            {a.image && a.imageAlt && (
+              <a href={a.image} target="_blank" rel="noreferrer" className="group relative block h-60 border-b border-white/10 bg-black/25 p-3 outline-offset-[-3px] focus-visible:outline-2 focus-visible:outline-gold sm:h-72">
+                <img src={a.image} alt={a.imageAlt} className="h-full w-full object-contain" loading="lazy" decoding="async" />
+                <span className="absolute bottom-3 right-3 rounded-full bg-background/90 p-2 text-gold transition group-hover:bg-background">
+                  <ExternalLink className="size-4" aria-hidden="true" />
+                </span>
+              </a>
+            )}
+            <div className="flex items-start gap-4 p-5 sm:p-6">
+              <div className="grid size-10 shrink-0 place-items-center rounded-full bg-gradient-gold text-[color:var(--ink)]">
+                <Trophy className="h-5 w-5" aria-hidden="true" />
               </div>
-            </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase tracking-[0.24em] text-gold">{a.place}</span>
-                <span className="text-[10px] text-muted-foreground">· {a.year}</span>
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <span className="text-[10px] uppercase tracking-[0.17em] text-gold">{a.place}</span>
+                  <span className="text-xs text-muted-foreground">· {a.year}</span>
+                </div>
+                <h3 className="mt-1 text-lg text-foreground">{a.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{a.detail}</p>
+                {a.link && <a href={a.link} target="_blank" rel="noreferrer" className="mt-3 inline-block text-sm text-gold hover:underline">LinkedIn post</a>}
               </div>
-              <h3 className="mt-1 text-lg text-foreground">{a.name}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{a.detail}</p>
-              <a href={a.link} target="_blank" rel="noreferrer" className="mt-3 inline-block text-sm text-gold hover:underline">LinkedIn post</a>
             </div>
           </motion.div>
         ))}

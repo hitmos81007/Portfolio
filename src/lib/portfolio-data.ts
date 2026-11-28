@@ -186,7 +186,7 @@ export const certificates = [
   {
     "name": "Python Using AI Workshop",
     "issuer": "AI for Techies",
-    "date": "2026",
+    "date": "March 2025",
     "cat": "AI",
     "link": "https://www.linkedin.com/feed/update/urn:li:activity:7500520258559119360/"
   },
@@ -213,7 +213,7 @@ export const certificates = [
   },
   {
     "name": "Java, C++, and GenAI 101 bootcamps",
-    "issuer": null,
+    "issuer": "LetsUpgrade",
     "date": "2025",
     "cat": "Courses",
     "link": "https://www.linkedin.com/feed/update/urn:li:activity:7528430778616209410/"
@@ -222,25 +222,40 @@ export const certificates = [
 
 export const awards = [
   {
-    "name": "VJ Hackathon 2026",
-    "place": "National-level finalist",
-    "year": 2026,
-    "detail": "VNR VJIET · Finalist with Segfault Squad",
-    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7518214281184571392/"
-  },
-  {
     "name": "Internal Smart India Hackathon 2026",
     "place": "4th place · Hardware track",
     "year": 2026,
-    "detail": "Vel Tech High Tech",
+    "detail": "Best Performer trophy · Vel Tech High Tech · September 11–12, 2026",
+    "image": "/awards/internal-sih-2026.webp",
+    "imageAlt": "Best Performer trophy from the 2026 Internal Smart India Hackathon",
     "link": "https://www.linkedin.com/feed/update/urn:li:activity:7518209293901303808/"
   },
   {
     "name": "Internal Smart India Hackathon 2025",
     "place": "Best Idea Presentation Award",
     "year": 2025,
-    "detail": "Vel Tech High Tech · AI-Based Smart Traffic Management System",
+    "detail": "AI-Based Smart Traffic Management System · Vel Tech High Tech · September 25, 2025",
+    "image": "/awards/internal-sih-2025.webp",
+    "imageAlt": "Best Idea Presentation Award trophy from the 2025 Internal Smart India Hackathon",
     "link": "https://www.linkedin.com/feed/update/urn:li:activity:7500522467296280576/"
+  },
+  {
+    "name": "Class XII Academic Excellence and English Elocution",
+    "place": "First place in both",
+    "year": "2024–25",
+    "detail": "St. John’s Matric. Hr. Sec. School · First rank in General Proficiency and first prize in English Elocution",
+    "image": "/awards/st-johns-academic-awards.webp",
+    "imageAlt": "First-place Academic Excellence and English Elocution trophies with medals",
+    "link": null
+  },
+  {
+    "name": "VJ Hackathon 2026",
+    "place": "National-level finalist",
+    "year": 2026,
+    "detail": "VNR VJIET · Finalist with Segfault Squad",
+    "image": null,
+    "imageAlt": null,
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:7518214281184571392/"
   }
 ];
 
